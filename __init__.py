@@ -4,7 +4,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'python-oauth2'))
 import oauth2 as oauth
 from cgi import parse_qsl
 import urllib, logging
-from django.utils import simplejson as json
+try:
+  from django.utils import simplejson as json
+except:
+  import json
 
 DEV = False
 AUTH = True
