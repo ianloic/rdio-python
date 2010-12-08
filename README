@@ -1,1 +1,3 @@
 A Python library (built on python-oauth2) to access the soon-to-be-real Rdio API.
+
+This depends on Python-OAuth-2 from: https://github.com/simplegeo/python-oauth2
