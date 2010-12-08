@@ -1,6 +1,6 @@
 '''A Python library for accessing the Rdio REST API with OAuth'''
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'python-oauth2'))
+# depends on oauth2 from https://github.com/simplegeo/python-oauth2
 import oauth2 as oauth
 from cgi import parse_qsl
 import urllib, logging
