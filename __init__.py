@@ -106,17 +106,26 @@ class Rdio(object):
 
 
     def call(self, method, **args):
-        args['method'] = method
-        client = self.__client()
-        resp, content = client.request(Rdio.API, 'POST', urllib.urlencode(args))
+        '''Call a method on the Rdio service and return the result as a
+        Python object. If there's an error then throw an appropriate
+        exception.'''
+        resp, content = self.call_raw(method, **args)
         if resp['status'] != '200':
             raise RdioProtocolException(resp['status'], content)
-        logging.info(`content`)
         response = json.loads(content)
         if response['status'] == 'ok':
             return response['result']
         else:
             raise RdioAPIException(response['message'])
+
+        
+    def call_raw(self, method, **args):
+        '''Call a method on the Rdio service and return the raw HTTP result,
+        a response object and the content object. See the httplib2 request
+        method for examples'''
+        args['method'] = method
+        client = self.__client()
+        return client.request(Rdio.API, 'POST', urllib.urlencode(args))
 
         
     def __getattr__(self, name):
